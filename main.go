@@ -26,14 +26,12 @@ func main() {
 		return
 	}
 
-	// if !debug {
-	// 	gin.SetMode(gin.ReleaseMode)
-	// }
+	if !debug {
+		gin.SetMode(gin.ReleaseMode)
+	}
 	engine := gin.New()
 	engine.Use(gin.Logger())
-
 	engine.GET("/simple_translate", SimpleTranslateHanlder)
-
 	log.Notice("start serving at [%s]", laddr)
 	if err = engine.Run(laddr); err != nil {
 		log.Error("gin engine run error:%v", err)
